@@ -1,23 +1,54 @@
 import Image from 'next/image';
+import Badge, { BadgeSlug } from './Badge';
+
+interface Project {
+	name: string,
+	description: string,
+	stack?: BadgeSlug[],
+	imageURL?: string,
+	projectURL?: string,
+	demoURL?: string,
+}
 
 export default function ProjectsSection() {
+	const projects: Project[] = [
+		{
+			name: '2048',
+			description: 'A clean, responsive, PWA re-creation of the classic 2048 puzzle game.',
+			stack: ['react', 'typescript', 'vite'],
+			imageURL: '/2048.jpg',
+			projectURL: 'https://github.com/mrhanna/2048',
+			demoURL: 'https://mrhanna.dev/2048',
+		}
+	]
+
 	return (
 		<section className="py-12 sm:py-20">
 			<div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 				<h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">Featured Projects</h2>
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-					{[1, 2, 3, 4].map((project) => (
-						<div key={project} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+				<div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+					{projects.map((project) => (
+						<div key={project.name} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow col-span-2 sm:last:odd:col-start-2">
 							<div className="aspect-video bg-gray-100 relative">
-								<Image src={`/code.jpg`} alt={`Project ${project}`} fill className="object-cover" />
+								{project.imageURL && <Image src={project.imageURL} alt={`Project 2048`} fill className="object-cover" />}
 							</div>
 							<div className="p-4 sm:p-6">
-								<h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Project Title {project}</h3>
-								<p className="text-sm sm:text-base text-gray-600 mb-4">A brief description of the project and the technologies used in its development.</p>
-								<div className="flex gap-2">
-									<a href="#" className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base">
-										View Project →
-									</a>
+								<h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">{project.name}</h3>
+								<p className="text-sm sm:text-base text-gray-600 mb-4">{project.description}</p>
+								{project.stack && <div className="flex gap-2 my-4">
+									{project.stack.map((slug: BadgeSlug) => <Badge key={slug} slug={slug} />)}
+								</div>}
+								<div className="flex gap-4">
+									{project.projectURL &&
+										<a href={project.projectURL} target="_blank" className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base">
+											View Project →
+										</a>
+									}
+									{project.demoURL &&
+										<a href={project.demoURL} target="_blank" className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base">
+											Live Demo →
+										</a>
+									}
 								</div>
 							</div>
 						</div>
