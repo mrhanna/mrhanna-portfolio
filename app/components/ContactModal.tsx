@@ -1,11 +1,13 @@
-import { useRouter } from "next/navigation";
+'use client';
+
+import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 import { useForm, ValidationError } from '@formspree/react';
 
-export default function ContactModal({ isOpen }: {
-    isOpen: boolean,
-}) {
+export default function ContactModal() {
+    const isOpen = useSearchParams().has('contact');
+
     const router = useRouter();
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
