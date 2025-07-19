@@ -33,3 +33,4 @@ jobs:
           ssh-port: ${{ secrets.SSH_PORT }}
           destination-path: ${{ secrets.DESTINATION }}
           source-path: out/
+          rsync-options: --archive --verbose --compress --human-readable --progress --delete-after --exclude=.git* --exclude=.git/ --exclude=README.md --exclude=readme.md --exclude=.gitignore --exclude=2048/ --exclude=projects/
