@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { FaRegWindowClose, FaWindowClose } from "react-icons/fa";
+import { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FaWindowClose } from "react-icons/fa";
 import { useForm, ValidationError } from '@formspree/react';
 
 export default function ContactModal({ isOpen }: {
@@ -21,27 +21,31 @@ export default function ContactModal({ isOpen }: {
             router.push('/', { scroll: false })
         };
 
-        if (dialogRef.current) {
-            dialogRef.current.addEventListener('cancel', handleEscape);
+        const dialog = dialogRef.current;
+
+        if (dialog) {
+            dialog.addEventListener('cancel', handleEscape);
 
             return () => {
-                dialogRef.current?.removeEventListener('cancel', handleEscape);
+                dialog.removeEventListener('cancel', handleEscape);
             }
         }
 
-    }, [])
+    }, [router])
 
     // imperatively use HTML5 Dialog Events
     useEffect(() => {
-        if (dialogRef.current) {
+        const dialog = dialogRef.current;
+
+        if (dialog) {
 
             if (isOpen) {
-                dialogRef.current.showModal();
+                dialog.showModal();
             }
 
             else {
                 const timeout = setTimeout(() => {
-                    dialogRef.current?.close();
+                    dialog.close();
                 }, 200)
 
                 return () => { clearTimeout(timeout) }

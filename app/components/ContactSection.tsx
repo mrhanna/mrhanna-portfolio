@@ -9,7 +9,7 @@ export default function ContactSection() {
 			<div className="max-w-2xl mx-auto">
 				<motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center space-y-6">
 					<h2 className="text-2xl font-semibold text-gray-900">Contact</h2>
-					<p className="text-gray-600">Working on something cool? Let's chat!</p>
+					<p className="text-gray-600">Working on something cool? Let&apos;s chat!</p>
 
 					{/* Location */}
 					<div className="flex items-center justify-center gap-2 text-gray-600">

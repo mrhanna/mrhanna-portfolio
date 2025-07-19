@@ -19,7 +19,7 @@ function BadgeView({
     Icon: IconType,
     color: string,
 }) {
-    const [_a, _b, luminence] = convert.hex.hsl(color);
+    const luminence = convert.hex.hsl(color)[2];
 
 
     return (

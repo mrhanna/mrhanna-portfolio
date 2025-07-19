@@ -12,7 +12,7 @@ export default function HeroSection() {
 				<h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Michael Hanna</h1>
 				<p className="text-lg sm:text-xl text-gray-700 mb-6 sm:mb-8">Full Stack Developer</p>
 				<p className="text-gray-700 max-w-2xl mx-auto text-sm sm:text-base px-4">
-					I'm a freelance musician and educator actively pivoting into full-stack development. Bringing the same discipline, creativity, and problem-solving mindset that shaped my success in performance and teaching.
+					I&apos;m a freelance musician and educator actively pivoting into full-stack development. Bringing the same discipline, creativity, and problem-solving mindset that shaped my success in performance and teaching.
 				</p>
 			</div>
 		</section>
