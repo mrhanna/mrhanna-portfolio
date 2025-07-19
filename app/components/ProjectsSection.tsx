@@ -16,7 +16,7 @@ export default function ProjectsSection() {
 			name: '2048',
 			description: 'A clean, responsive, PWA re-creation of the classic 2048 puzzle game.',
 			stack: ['react', 'typescript', 'vite'],
-			imageURL: '/2048.jpg',
+			imageURL: '/images/2048.jpg',
 			projectURL: 'https://github.com/mrhanna/2048',
 			demoURL: 'https://mrhanna.dev/2048',
 		}
