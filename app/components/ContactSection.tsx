@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function ContactSection() {
 	return (
@@ -26,8 +27,9 @@ export default function ContactSection() {
 
 					{/* Contact Buttons */}
 					<div className="flex flex-col sm:flex-row justify-center gap-4">
-						<a
-							href="mailto:david@example.com"
+						<Link
+							scroll={false}
+							href="/?contact"
 							className="px-6 py-2 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2"
 						>
 							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -35,7 +37,7 @@ export default function ContactSection() {
 								<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
 							</svg>
 							Get in Touch
-						</a>
+						</Link>
 						<a
 							href="/resume.pdf"
 							target="_blank"

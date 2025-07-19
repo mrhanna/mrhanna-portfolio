@@ -26,6 +26,32 @@ export default {
         foreground: "var(--foreground)",
 
       },
+
+      animation: {
+        fadeIn: 'fadeIn ease .2s',
+        fadeOut: 'fadeOut ease .2s forwards',
+        slideIn: 'slideIn ease .2s',
+        slideOut: 'slideOut ease .2s forwards',
+      },
+
+      keyframes: {
+        fadeIn: {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        fadeOut: {
+          from: { opacity: '1' },
+          to: { opacity: '0' },
+        },
+        slideIn: {
+          from: { transform: 'scale(0.5) translateY(50%)', opacity: '0' },
+          to: { transform: 'scale(1) translateY(0)', opacity: '1' },
+        },
+        slideOut: {
+          from: { transform: 'scale(1) translateY(0)', opacity: '1' },
+          to: { transform: 'scale(0.5) translateY(50%)', opacity: '0' },
+        },
+      }
     },
   },
   plugins: [],
