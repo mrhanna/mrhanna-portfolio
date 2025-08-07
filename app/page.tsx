@@ -8,17 +8,17 @@ import ContactModal from './components/ContactModal';
 import { Suspense } from 'react';
 
 export default function SimplePortfolio() {
-	return (
-		<>
-			<Suspense>
-				<ContactModal />
-			</Suspense>
-			<main className="min-h-screen bg-background-50 pt-12">
-				<HeroSection />
-				<SkillsSection />
-				<ProjectsSection />
-				<ContactSection />
-			</main>
-		</>
-	);
+    return (
+        <>
+            <Suspense>
+                <ContactModal />
+            </Suspense>
+            <main className="min-h-screen bg-background-50">
+                <HeroSection />
+                <SkillsSection />
+                <ProjectsSection />
+                <ContactSection />
+            </main>
+        </>
+    );
 }
