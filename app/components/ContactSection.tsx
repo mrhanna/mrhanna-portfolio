@@ -39,7 +39,7 @@ export default function ContactSection() {
 							Get in Touch
 						</Link>
 						<a
-							href="/assets/mrhanna-resume-7.19.25.pdf"
+							href="/assets/MichaelHanna_resume_8.7.25.pdf"
 							target="_blank"
 							className="px-6 py-2 border border-gray-300 text-gray-700 font-medium rounded hover:bg-gray-50 transition-colors inline-flex items-center justify-center gap-2"
 						>
