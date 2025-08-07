@@ -7,6 +7,9 @@ import {
     SiPostgresql,
     SiPrisma,
     SiReact,
+    SiRedux,
+    SiStrapi,
+    SiTailwindcss,
     SiTypescript,
     SiVite,
 } from 'react-icons/si';
@@ -20,6 +23,9 @@ const badges = {
     prisma: ['Prisma', SiPrisma, '#2D3748'],
     nextjs: ['Next.js', SiNextdotjs, '#000000'],
     postgres: ['PostgreSQL', SiPostgresql, '#336791'],
+    strapi: ['Strapi', SiStrapi, '#4945FF'],
+    redux: ['Redux', SiRedux, '#764ABC'],
+    tailwindcss: ['TailwindCSS', SiTailwindcss, '#06B6D4'],
 } satisfies Record<string, [string, IconType, string]>;
 
 export type BadgeSlug = keyof typeof badges;
