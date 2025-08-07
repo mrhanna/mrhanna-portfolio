@@ -54,7 +54,7 @@ export default function ProjectsSection() {
                                 {project.imageURL && (
                                     <Image
                                         src={project.imageURL}
-                                        alt={`Project 2048`}
+                                        alt={`Project ${project.name} screenshot`}
                                         fill
                                         className="object-cover"
                                     />
