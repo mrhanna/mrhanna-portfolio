@@ -25,6 +25,14 @@ export default function ProjectsSection() {
             demoURL: 'https://mrhanna.dev/2048',
         },
         {
+            name: 'HIIT the Deck',
+            status: 'in-progress',
+            description: 'A fitness card game, developed for mobile with Expo.',
+            stack: ['expo', 'react', 'typescript'],
+            imageURL: '/images/hiit-screenshot.png',
+            projectURL: 'https://github.com/mrhanna/hiit-the-deck',
+        },
+        {
             name: 'TrophyBoard',
             status: 'in-progress',
             description: 'A gamified student management platform.',

@@ -2,6 +2,7 @@ import convert from 'color-convert';
 import { IconType } from 'react-icons';
 import {
     SiDocker,
+    SiExpo,
     SiExpress,
     SiNextdotjs,
     SiPostgresql,
@@ -26,6 +27,7 @@ const badges = {
     strapi: ['Strapi', SiStrapi, '#4945FF'],
     redux: ['Redux', SiRedux, '#764ABC'],
     tailwindcss: ['TailwindCSS', SiTailwindcss, '#06B6D4'],
+    expo: ['Expo', SiExpo, '#000020'],
 } satisfies Record<string, [string, IconType, string]>;
 
 export type BadgeSlug = keyof typeof badges;
