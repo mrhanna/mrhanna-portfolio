@@ -74,68 +74,75 @@ export default function ProjectsSection() {
         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
           Featured Projects
         </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-start">
+        <ul className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-start">
           {projects.map((project) => (
-            <div
+            <li
               key={project.name}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow col-span-2 sm:last:odd:col-start-2"
             >
-              <div className="aspect-video bg-gray-100 relative p-4 text-right">
-                {project.imageURL && (
-                  <Image
-                    src={project.imageURL}
-                    alt={`Project ${project.name} screenshot`}
-                    fill
-                    className="object-cover"
-                  />
-                )}
-
-                {project.status && <StatusBadge status={project.status} />}
-              </div>
-              <div className="p-4 sm:p-6">
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
-                  {project.name}
-                </h3>
-
-                <p className="text-sm sm:text-base text-gray-600 mb-4">
-                  {project.description}
-                </p>
-
-                {project.stack && (
-                  <div className="flex gap-2 my-4 flex-wrap">
-                    {project.stack.map((slug: BadgeSlug) => (
-                      <Badge key={slug} slug={slug} />
-                    ))}
-                  </div>
-                )}
-                <div className="flex gap-4">
-                  {project.projectURL && (
-                    <Link
-                      href={project.projectURL}
-                      target={
-                        isRelativeURL(project.projectURL) ? '_self' : '_blank'
-                      }
-                      className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
-                    >
-                      View Project →
-                    </Link>
+              <article>
+                <div className="aspect-video bg-gray-100 relative p-4 text-right">
+                  {project.imageURL && (
+                    <Image
+                      src={project.imageURL}
+                      alt={`Project ${project.name} screenshot`}
+                      fill
+                      className="object-cover"
+                    />
                   )}
-                  {project.demoURL && (
-                    <Link
-                      href={project.demoURL}
-                      target={
-                        isRelativeURL(project.demoURL) ? '_self' : '_blank'
-                      }
-                      className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
-                    >
-                      Live Demo →
-                    </Link>
-                  )}
+                  {project.status && <StatusBadge status={project.status} />}
                 </div>
-              </div>
-            </div>
+                <div className="p-4 sm:p-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
+                    {project.name}
+                  </h3>
+                  <p className="sr-only">Status: {project.status}</p>
+                  <p className="text-sm sm:text-base text-gray-600 mb-4">
+                    {project.description}
+                  </p>
+                  {project.stack && (
+                    <>
+                      <h4 className="sr-only">Tech Stack</h4>
+                      <ul className="flex gap-2 my-4 flex-wrap">
+                        {project.stack.map((slug: BadgeSlug) => (
+                          <Badge key={slug} slug={slug} />
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                  <div className="flex gap-4">
+                    {project.projectURL && (
+                      <Link
+                        href={project.projectURL}
+                        target={
+                          isRelativeURL(project.projectURL) ? '_self' : '_blank'
+                        }
+                        className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
+                      >
+                        View Project{' '}
+                        <span className="sr-only">{project.name}</span>
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    )}
+                    {project.demoURL && (
+                      <Link
+                        href={project.demoURL}
+                        target={
+                          isRelativeURL(project.demoURL) ? '_self' : '_blank'
+                        }
+                        className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
+                      >
+                        Live Demo{' '}
+                        <span className="sr-only">of {project.name}</span>
+                        <span aria-hidden="true">→</span>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
