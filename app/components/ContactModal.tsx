@@ -82,7 +82,7 @@ export default function ContactModal() {
           <div className="relative">
             <form
               onSubmit={handleSubmit}
-              className={`${state.succeeded ? 'blur-sm' : ''} p-6 flex flex-col gap-2 relative`}
+              className={`${state.succeeded ? 'blur-xs' : ''} p-6 flex flex-col gap-2 relative`}
             >
               <label htmlFor="email" className="font-bold">
                 Your Email
@@ -101,7 +101,7 @@ export default function ContactModal() {
                   setEmail(e.target.value);
                 }}
                 placeholder="your@email.com"
-                className="w-full focus:outline-background-100 focus:invalid:outline-red-500 invalid:outline-red-400 outline-none"
+                className="w-full focus:outline-background-100 focus:invalid:outline-red-500 invalid:outline-red-400 outline-hidden"
                 disabled={state.succeeded ? true : undefined}
               />
               <label htmlFor="message" className="font-bold">
@@ -119,14 +119,14 @@ export default function ContactModal() {
                 onChange={(e: ChangeEvent<HTMLTextAreaElement>) => {
                   setMessage(e.target.value);
                 }}
-                className="w-full h-36 focus:outline-background-100 outline-none resize-none overflow-scroll"
+                className="w-full h-36 focus:outline-background-100 outline-hidden resize-none overflow-scroll"
                 placeholder="Write your message here"
                 disabled={state.succeeded ? true : undefined}
               ></textarea>
 
               <input
                 type="submit"
-                className="px-6 py-2 border bg-background-200  text-gray-700 mt-4 cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-default font-medium rounded hover:bg-background-100 transition-colors self-center"
+                className="px-6 py-2 border bg-background-200  text-gray-700 mt-4 cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-default font-medium rounded-sm hover:bg-background-100 transition-colors self-center"
                 disabled={
                   !state.succeeded &&
                   !state.submitting &&

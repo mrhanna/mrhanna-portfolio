@@ -96,7 +96,7 @@ export default function HCDPage() {
         <img
           src="/images/healthcaredashboard.png"
           alt="Health Care Dashboard screenshot"
-          className="rounded shadow"
+          className="rounded-sm shadow-sm"
         />
         <figcaption className="text-sm text-gray-500 mt-2">
           Screenshot of demo Health Care Dashboard

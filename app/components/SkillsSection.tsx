@@ -57,7 +57,7 @@ export default function SkillsSection() {
             {skills.map((skill) => (
               <li
                 key={skill}
-                className="bg-white p-4 sm:p-6 rounded-lg shadow-sm text-center hover:shadow-md transition-shadow text-sm sm:text-base"
+                className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
               >
                 {skill}
               </li>
@@ -72,7 +72,7 @@ export default function SkillsSection() {
             {certs.map((cert) => (
               <li
                 key={cert[0]}
-                className="bg-white p-4 sm:p-6 rounded-lg shadow-sm text-center hover:shadow-md transition-shadow text-sm sm:text-base"
+                className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
               >
                 <Image
                   src={cert[1]}

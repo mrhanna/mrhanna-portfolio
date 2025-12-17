@@ -14,7 +14,7 @@ export default function HeroSection() {
             className="object-cover z-10"
           />
 
-          <div className="bg-gradient-to-b from-background-200 to-background-500 absolute bottom-0 left-0 w-full h-[234px] lg:h-[347px]" />
+          <div className="bg-linear-to-b from-background-200 to-background-500 absolute bottom-0 left-0 w-full h-[234px] lg:h-[347px]" />
         </div>
         <div className="md:order-1 text-center md:text-right flex md:items-end justify-between flex-col">
           <div className="flex flex-col md:items-end">

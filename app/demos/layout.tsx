@@ -8,7 +8,7 @@ export default function DemoLayout({
 }>) {
   return (
     <>
-      <nav className="px-4 bg-background-100 sticky top-0 shadow-sm">
+      <nav className="px-4 bg-background-100 sticky top-0 shadow-xs">
         <Link
           href="/"
           className="inline-flex p-2 pr-4 items-center gap-4 hover:bg-background-200"
