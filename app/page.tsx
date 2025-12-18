@@ -13,7 +13,7 @@ export default function SimplePortfolio() {
       <Suspense>
         <ContactModal />
       </Suspense>
-      <main className="min-h-screen bg-background-50">
+      <main className="min-h-screen">
         <HeroSection />
         <SkillsSection />
         <ProjectsSection />

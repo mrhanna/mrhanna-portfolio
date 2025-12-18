@@ -1,10 +1,10 @@
 @import 'tailwindcss';
 
 @theme inline {
-  --font-sans: var(--font-inter), sans-serif;
+  --font-sans: var(--font-source-sans), sans-serif;
 }
 
-@theme {
+@theme inline {
   --color-*: initial;
 
   --color-accent-orange-50: oklch(0.99 0.02 58);
@@ -186,5 +186,83 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentcolor);
+  }
+
+  :root {
+    font-size: 21px;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .prose > * + * {
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    --btn-outline: #333;
+    --btn-bg: #000;
+
+    cursor: pointer;
+    z-index: 1;
+    @apply relative py-2 px-4 inline-block;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    background-color: var(--btn-bg);
+    z-index: -1;
+    transition:
+      background-color 0.2s,
+      transform 0.2s;
+
+    @apply w-full h-full;
+  }
+
+  .btn:hover::before {
+    transform: translate(2px, -2px);
+  }
+
+  .btn::after {
+    content: '';
+    z-index: 0;
+    border: 1px solid var(--btn-outline);
+    @apply w-full h-full absolute inset-0;
+  }
+
+  .btn-primary {
+    --btn-outline: var(--color-accent-orange-500);
+    --btn-bg: var(--color-accent-orange-200);
+
+    &:hover {
+      --btn-bg: var(--color-accent-orange-300);
+    }
+  }
+
+  .btn-secondary {
+    --btn-outline: var(--color-accent-blue-500);
+    --btn-bg: var(--color-accent-blue-200);
+
+    &:hover {
+      --btn-bg: var(--color-accent-blue-300);
+    }
+  }
+}
+
+@layer utilities {
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  .sideline {
+    @apply border-l border-l-ui-blue-200;
   }
 }

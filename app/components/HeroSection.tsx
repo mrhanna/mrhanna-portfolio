@@ -4,37 +4,53 @@ import Image from 'next/image';
 
 export default function HeroSection() {
   return (
-    <section className="grid place-items-center py-32">
-      <div className="flex flex-col md:flex-row items-center md:items-stretch justify-center gap-12 px-12 lg:gap-16 lg:px-16">
-        <div className="md:order-2 w-[240px] h-[310px] -mt-[70px] lg:w-[360px] lg:h-[460px] lg:-mt-[100px] shrink-0 relative">
-          <Image
+    <section>
+      <div className="container mx-auto grid grid-cols-2 mt-20 sideline items-center">
+        <div className="md:order-2 w-60 aspect-square lg:w-90 relative bg-accent-blue-400 rounded-full justify-self-center md:justify-self-end">
+          <svg width="0" height="0" aria-hidden="true">
+            <defs>
+              <clipPath id="portrait-cut" clipPathUnits="objectBoundingBox">
+                <path
+                  d="
+          M 0 0
+          H 1
+          V 0.6086956522
+          A 0.5 0.391304348 0 0 1 0 0.6086956522
+          Z
+        "
+                />
+              </clipPath>
+            </defs>
+          </svg>
+
+          <img
             src="/images/headshot-transparent-cropped.png"
             alt="Profile picture of Michael Hanna"
-            fill
-            className="object-cover z-10"
+            style={{ clipPath: 'url(#portrait-cut)' }}
+            className="absolute w-full bottom-0 left-0"
           />
-
-          <div className="bg-linear-to-b from-background-200 to-background-500 absolute bottom-0 left-0 w-full h-[234px] lg:h-[347px]" />
         </div>
-        <div className="md:order-1 text-center md:text-right flex md:items-end justify-between flex-col">
-          <div className="flex flex-col md:items-end">
-            <h1 className="font-black text-4xl md:text-5xl lg:text-8xl text-gray-900 mb-3 sm:mb-4 md:translate-x-[4px] md:max-w-[448px] xl:max-w-full">
-              Michael Hanna
-            </h1>
-            <p className="text-lg sm:text-xl mb-3 sm:mb-4">
-              Full Stack Developer
-            </p>
-          </div>
-          <p className="lg:max-w-md md:max-w-[350px] leading-relaxed translate-y-[5px]">
-            I&apos;m a freelance musician and educator actively pivoting into
-            full-stack development
-            <span className="inline-block md:max-lg:w-0">.</span> Bringing the
-            same discipline
-            <span className="inline-block lg:w-0">,</span> creativity, and
-            problem-solving mindset that shaped my success in performance and
-            teaching
-            <span className="inline-block w-0">.</span>
+        <div className="md:order-1 text-left prose max-w-90 pl-4">
+          <h1>
+            Hi, I'm Michael Hanna.{' '}
+            <span role="img" aria-label="waving hand">
+              👋
+            </span>
+          </h1>
+          <p className="text-5xl font-normal">
+            I make websites
+            <br />
+            <strong className="font-black">behave.</strong>
           </p>
+          <p className="max-w-80">
+            I help teams ship reliable websites by handling the parts that need
+            careful thinking: structure, implementation, and the details that
+            break when no one’s paying attention.
+          </p>
+          <div className="flex gap-4">
+            <button className="btn btn-primary">Get in Touch</button>
+            <button className="btn btn-secondary">Learn More</button>
+          </div>
         </div>
       </div>
     </section>

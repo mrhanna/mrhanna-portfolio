@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import { Source_Sans_3 } from 'next/font/google';
+import './styles/globals.css';
 
-const inter = Inter({
-  variable: '--font-inter',
+const inter = Source_Sans_3({
+  variable: '--font-source-sans',
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '700', '900'],
 });
 
 export const metadata: Metadata = {
