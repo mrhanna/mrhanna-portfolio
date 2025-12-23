@@ -47,46 +47,45 @@ export default function SkillsSection() {
   ];
 
   return (
-    <div className="bg-background-100 py-12 sm:py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <section>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
-            Skills & Technologies
-          </h2>
-          <ul className="flex justify-center flex-wrap gap-5 sm:gap-4 gap my-8">
-            {skills.map((skill) => (
-              <li
-                key={skill}
-                className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
-              >
-                {skill}
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center mt-12">
-            Certifications
-          </h2>
-          <ul className="flex justify-center flex-wrap gap-5 sm:gap-4 gap">
-            {certs.map((cert) => (
-              <li
-                key={cert[0]}
-                className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
-              >
-                <Image
-                  src={cert[1]}
-                  width={80}
-                  height={80}
-                  alt=""
-                  className="mb-4"
-                />
-                {cert[0]}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-    </div>
+    <>
+      <section>
+        <h2 className="sideline full-bleed text-6xl font-black lowercase px-4 text-left text-ui-blue-900">
+          Skills &<br />
+          Technologies
+        </h2>
+        <ul className="flex justify-center flex-wrap gap-5 sm:gap-4 gap my-8">
+          {skills.map((skill) => (
+            <li
+              key={skill}
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
+            >
+              {skill}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section>
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center mt-12">
+          Certifications
+        </h2>
+        <ul className="flex justify-center flex-wrap gap-5 sm:gap-4 gap">
+          {certs.map((cert) => (
+            <li
+              key={cert[0]}
+              className="bg-white p-4 sm:p-6 rounded-lg shadow-xs text-center hover:shadow-md transition-shadow text-sm sm:text-base"
+            >
+              <Image
+                src={cert[1]}
+                width={80}
+                height={80}
+                alt=""
+                className="mb-4"
+              />
+              {cert[0]}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   );
 }
