@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import SkillBadge, { Skill } from './SkillBadge';
+import SkillBadge, { Skill } from './skills/SkillBadge';
 import {
   siHtml5,
   siCss,
@@ -83,12 +83,73 @@ Object.keys(skills).forEach((category) => {
   });
 });
 
+type ActivityIdentifier = {
+  type: 'category' | 'skill' | '';
+  category?: string;
+  skill: string;
+};
+
+function calculateDisplayLevel(
+  hover: ActivityIdentifier,
+  focus: ActivityIdentifier,
+  target: ActivityIdentifier,
+) {
+  if (target.type === 'skill') {
+    if (focus.type === 'skill' && focus.skill === target.skill) {
+      return 4;
+    }
+
+    if (
+      (focus.type === 'category' && focus.category === target.category) ||
+      (hover.type === 'skill' && hover.skill === target.skill)
+    ) {
+      return 3;
+    }
+
+    if (
+      hover.type === 'category' &&
+      hover.category !== target.category
+      // || (hover.type === 'skill' && hover.skill !== target.skill)
+    ) {
+      return 1;
+    }
+  }
+  return 2;
+}
+
 export default function SkillsSection() {
-  const [activityStatus, setActivityStatus] = useState({
-    name: '',
+  const [focusStatus, setFocusStatus] = useState<ActivityIdentifier>({
+    type: '',
+    skill: '',
     category: '',
   });
-  const [hoveredSkill, setHoveredSkill] = useState('');
+
+  const [hoverStatus, setHoverStatus] = useState<ActivityIdentifier>({
+    type: '',
+    skill: '',
+    category: '',
+  });
+
+  const handleMouseEnter = (identifier: ActivityIdentifier) => {
+    setHoverStatus(identifier);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverStatus({ type: '', skill: '', category: '' });
+  };
+
+  const handleClick = (identifier: ActivityIdentifier) => {
+    if (
+      focusStatus.type === identifier.type &&
+      focusStatus.category === identifier.category &&
+      focusStatus.skill === identifier.skill
+    ) {
+      setFocusStatus({ type: '', skill: '', category: '' });
+      return;
+    }
+
+    setFocusStatus(identifier);
+  };
 
   return (
     <section className="bg-ui-blue-200">
@@ -107,21 +168,7 @@ export default function SkillsSection() {
                 <h3 className="my-2 text-xl font-black">{category}</h3>
                 <ul>
                   {skills[category].map((skill) => (
-                    <li
-                      onMouseEnter={() => setHoveredSkill(skill.name)}
-                      onMouseLeave={() => setHoveredSkill('')}
-                      key={skill.name}
-                      style={{
-                        borderBottomWidth: 3,
-                        borderBottomColor:
-                          hoveredSkill === skill.name
-                            ? 'var(--color-accent-orange-500)'
-                            : 'transparent',
-                        transition: 'border-color 0.3s',
-                      }}
-                    >
-                      {skill.name}
-                    </li>
+                    <li key={skill.name}>{skill.name}</li>
                   ))}
                 </ul>
               </div>
@@ -134,17 +181,32 @@ export default function SkillsSection() {
               style={{
                 top: 'calc(50% - var(--container-max) / 6)',
               }}
+              onMouseLeave={handleMouseLeave}
             >
               {Object.values(skills)
                 .flat()
-                .map((skill) => (
-                  <SkillBadge
-                    key={skill.name}
-                    skill={skill}
-                    setHoveredSkill={setHoveredSkill}
-                    isActive={hoveredSkill === skill.name}
-                  />
-                ))}
+                .map((skill) => {
+                  const identifier = {
+                    type: 'skill',
+                    category: skill.category,
+                    skill: skill.name,
+                  } as ActivityIdentifier;
+
+                  return (
+                    <SkillBadge
+                      key={skill.name}
+                      skill={skill}
+                      displayLevel={calculateDisplayLevel(
+                        hoverStatus,
+                        focusStatus,
+                        identifier,
+                      )}
+                      onClick={() => handleClick(identifier)}
+                      onMouseEnter={() => handleMouseEnter(identifier)}
+                      onMouseLeave={handleMouseLeave}
+                    />
+                  );
+                })}
             </ul>
           </div>
         </div>

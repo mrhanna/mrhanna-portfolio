@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @source '..';
 
+@import './skills.css';
+
 @theme inline {
   --font-sans: var(--font-source-sans), sans-serif;
 }

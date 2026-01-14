@@ -1,0 +1,56 @@
+@layer components {
+  .skills-section {
+    @apply bg-ui-blue-200;
+  }
+
+  .skill-badge {
+    @apply inline-flex font-bold text-sm overflow-hidden;
+  }
+
+  .svg-active {
+    @apply w-full h-full transition-opacity opacity-0 relative z-1;
+  }
+
+  .svg-inactive {
+    @apply w-full h-full transition-opacity absolute top-0 left-0 -z-1 opacity-30;
+
+    fill: var(--color-ui-blue-950);
+  }
+
+  .skill-badge {
+    /* hiding */
+    &.level-1 {
+      .svg-active {
+        @apply opacity-0;
+      }
+
+      .svg-inactive {
+        @apply opacity-10;
+      }
+    }
+
+    /* level-2 is default state, no changes needed */
+
+    /* awake */
+    &.level-3 {
+      .svg-active {
+        @apply opacity-0;
+      }
+
+      .svg-inactive {
+        @apply opacity-50;
+      }
+    }
+
+    /* focused */
+    &.level-4 {
+      .svg-active {
+        @apply opacity-100;
+      }
+
+      .svg-inactive {
+        @apply opacity-50;
+      }
+    }
+  }
+}
