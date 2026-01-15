@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import SkillBadge, { Skill } from './skills/SkillBadge';
+import SkillIcon, { Skill } from './skills/SkillIcon';
 import {
   siHtml5,
   siCss,
@@ -22,7 +22,12 @@ import {
   siGimp,
   siInkscape,
 } from 'simple-icons';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { a } from 'framer-motion/client';
+import {
+  ActivityIdentifier,
+  useDisplayMapComputer,
+} from './skills/useDisplayMapComputer';
 
 const skills: Record<string, Skill[]> = {
   'Core Web': [
@@ -77,45 +82,15 @@ const skills: Record<string, Skill[]> = {
   ],
 };
 
+const simpleSkills: Record<string, string[]> = {};
+
 Object.keys(skills).forEach((category) => {
+  simpleSkills[category] = [];
   skills[category].forEach((skill) => {
     skill.category = category;
+    simpleSkills[category].push(skill.name);
   });
 });
-
-type ActivityIdentifier = {
-  type: 'category' | 'skill' | '';
-  category?: string;
-  skill: string;
-};
-
-function calculateDisplayLevel(
-  hover: ActivityIdentifier,
-  focus: ActivityIdentifier,
-  target: ActivityIdentifier,
-) {
-  if (target.type === 'skill') {
-    if (focus.type === 'skill' && focus.skill === target.skill) {
-      return 4;
-    }
-
-    if (
-      (focus.type === 'category' && focus.category === target.category) ||
-      (hover.type === 'skill' && hover.skill === target.skill)
-    ) {
-      return 3;
-    }
-
-    if (
-      hover.type === 'category' &&
-      hover.category !== target.category
-      // || (hover.type === 'skill' && hover.skill !== target.skill)
-    ) {
-      return 1;
-    }
-  }
-  return 2;
-}
 
 export default function SkillsSection() {
   const [focusStatus, setFocusStatus] = useState<ActivityIdentifier>({
@@ -130,6 +105,13 @@ export default function SkillsSection() {
     category: '',
   });
 
+  const computeDisplayMap = useDisplayMapComputer(simpleSkills);
+
+  const displayMap = useMemo(
+    () => computeDisplayMap(hoverStatus, focusStatus),
+    [hoverStatus, focusStatus],
+  );
+
   const handleMouseEnter = (identifier: ActivityIdentifier) => {
     setHoverStatus(identifier);
   };
@@ -140,14 +122,28 @@ export default function SkillsSection() {
 
   const handleClick = (identifier: ActivityIdentifier) => {
     if (
-      focusStatus.type === identifier.type &&
       focusStatus.category === identifier.category &&
       focusStatus.skill === identifier.skill
     ) {
       setFocusStatus({ type: '', skill: '', category: '' });
       return;
+    } else if (identifier.type === 'label') {
+      if (focusStatus.category === identifier.category) {
+        setFocusStatus({
+          type: 'icon',
+          skill: identifier.skill,
+          category: identifier.category,
+        });
+        return;
+      } else {
+        setFocusStatus({
+          type: 'card',
+          skill: '',
+          category: identifier.category,
+        });
+        return;
+      }
     }
-
     setFocusStatus(identifier);
   };
 
@@ -159,16 +155,42 @@ export default function SkillsSection() {
         </h2>
 
         <div className="grid grid-cols-2 gap-8 cursor-crosshair pb-8">
-          <div>
+          <div onMouseLeave={handleMouseLeave}>
             {Object.keys(skills).map((category) => (
               <div
-                className="bg-ui-blue-50 rounded-md shadow-md p-4 mb-4 opacity-50"
+                className={`skill-card level-${displayMap.cards[category] ?? 2}`}
+                onMouseEnter={() =>
+                  handleMouseEnter({ type: 'card', category, skill: '' })
+                }
+                onClick={() =>
+                  handleClick({ type: 'card', category, skill: '' })
+                }
                 key={category}
               >
                 <h3 className="my-2 text-xl font-black">{category}</h3>
                 <ul>
                   {skills[category].map((skill) => (
-                    <li key={skill.name}>{skill.name}</li>
+                    <li
+                      className={`skill-label level-${displayMap.labels[skill.name] ?? 2}`}
+                      onMouseEnter={() =>
+                        handleMouseEnter({
+                          type: 'label',
+                          category,
+                          skill: skill.name,
+                        })
+                      }
+                      onClick={(e: React.MouseEvent) => {
+                        e.stopPropagation();
+                        handleClick({
+                          type: 'label',
+                          category,
+                          skill: skill.name,
+                        });
+                      }}
+                      key={skill.name}
+                    >
+                      {skill.name}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -187,20 +209,16 @@ export default function SkillsSection() {
                 .flat()
                 .map((skill) => {
                   const identifier = {
-                    type: 'skill',
+                    type: 'icon',
                     category: skill.category,
                     skill: skill.name,
                   } as ActivityIdentifier;
 
                   return (
-                    <SkillBadge
+                    <SkillIcon
                       key={skill.name}
                       skill={skill}
-                      displayLevel={calculateDisplayLevel(
-                        hoverStatus,
-                        focusStatus,
-                        identifier,
-                      )}
+                      displayLevel={displayMap.icons[skill.name] ?? 2}
                       onClick={() => handleClick(identifier)}
                       onMouseEnter={() => handleMouseEnter(identifier)}
                       onMouseLeave={handleMouseLeave}

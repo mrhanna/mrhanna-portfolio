@@ -9,7 +9,7 @@ export type Skill = {
   cloudOrder?: number;
 };
 
-export default function SkillBadge({
+export default function SkillIcon({
   skill,
   displayLevel = 2,
   onClick,
@@ -26,7 +26,7 @@ export default function SkillBadge({
 
   return (
     <li
-      className={`skill-badge level-${displayLevel}`}
+      className={`skill-icon level-${displayLevel}`}
       style={{
         order: cloudOrder,
         gridColumn: `span ${weight}`,

@@ -3,7 +3,7 @@
     @apply bg-ui-blue-200;
   }
 
-  .skill-badge {
+  .skill-icon {
     @apply inline-flex font-bold text-sm overflow-hidden;
   }
 
@@ -17,7 +17,7 @@
     fill: var(--color-ui-blue-950);
   }
 
-  .skill-badge {
+  .skill-icon {
     /* hiding */
     &.level-1 {
       .svg-active {
@@ -51,6 +51,40 @@
       .svg-inactive {
         @apply opacity-50;
       }
+    }
+  }
+
+  .skill-card {
+    @apply bg-ui-blue-50 rounded-md shadow-md p-4 mb-4 opacity-50 transition-opacity;
+
+    &.level-1 {
+      @apply opacity-25;
+    }
+    &.level-3 {
+      @apply opacity-70;
+    }
+    &.level-4 {
+      @apply opacity-90;
+    }
+  }
+
+  .skill-label {
+    padding-left: 3px;
+    margin-left: -6px;
+
+    border-left: 3px solid transparent;
+
+    transition: border-left-color 0.3s;
+
+    &.level-3,
+    &:hover:not(.level-4) {
+      border-left-color: var(--color-accent-blue-300);
+    }
+
+    &.level-4 {
+      border-left-color: var(--color-accent-orange-500);
+      border-left-width: 4px;
+      margin-left: -7px;
     }
   }
 }
