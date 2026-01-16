@@ -273,6 +273,8 @@
     --btn-outline: var(--color-accent-orange-500);
     --btn-bg: var(--color-accent-orange-200);
 
+    @apply text-ui-blue-950;
+
     &:hover {
       --btn-bg: var(--color-accent-orange-300);
     }
@@ -281,6 +283,8 @@
   .btn-secondary {
     --btn-outline: var(--color-accent-blue-500);
     --btn-bg: var(--color-accent-blue-200);
+
+    @apply text-ui-blue-950;
 
     &:hover {
       --btn-bg: var(--color-accent-blue-300);
