@@ -12,7 +12,7 @@ import {
 
 export default function ContactSection() {
   return (
-    <section className="py-16 bg-ui-blue-900 text-ui-blue-100">
+    <section className="py-16 bg-ui-blue-900 text-ui-blue-100" id="contact">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

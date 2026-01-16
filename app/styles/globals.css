@@ -224,6 +224,10 @@
     border-color: var(--color-gray-200, currentcolor);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-ui-blue-950);
@@ -238,6 +242,10 @@
   .btn {
     --btn-outline: #333;
     --btn-bg: #000;
+
+    &:disabled {
+      @apply opacity-30 cursor-default;
+    }
 
     cursor: pointer;
     z-index: 1;
@@ -258,7 +266,7 @@
     @apply w-full h-full;
   }
 
-  .btn:hover::before {
+  .btn:not(:disabled):hover::before {
     transform: translate(2px, -2px);
   }
 
@@ -275,7 +283,7 @@
 
     @apply text-ui-blue-950;
 
-    &:hover {
+    &:not(:disabled):hover {
       --btn-bg: var(--color-accent-orange-300);
     }
   }
@@ -286,7 +294,7 @@
 
     @apply text-ui-blue-950;
 
-    &:hover {
+    &:not(:disabled):hover {
       --btn-bg: var(--color-accent-blue-300);
     }
   }

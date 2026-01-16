@@ -8,8 +8,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { FaWindowClose } from 'react-icons/fa';
 import { useForm, ValidationError } from '@formspree/react';
+import { TbSquareX } from 'react-icons/tb';
 
 export default function ContactModal() {
   const isOpen = useSearchParams().has('contact');
@@ -65,7 +65,7 @@ export default function ContactModal() {
         className={`grid place-items-center fixed w-full h-full left-0 top-0 ${isOpen ? 'animate-fadeIn' : 'animate-fadeOut'} bg-[#0006]`}
       >
         <div
-          className={`${isOpen ? 'animate-slideIn' : 'animate-slideOut'} bg-white rounded-lg w-full max-w-xl m-4 overflow-hidden shadow-lg`}
+          className={`${isOpen ? 'animate-slideIn' : 'animate-slideOut'} bg-ui-blue-50 text-ui-blue-950 rounded-lg w-full max-w-xl m-4 overflow-hidden shadow-lg`}
         >
           <div className="text-right bg-background-200 text-2xl p-2 leading-none">
             <button
@@ -74,15 +74,15 @@ export default function ContactModal() {
               onClick={() => {
                 router.push('/', { scroll: false });
               }}
-              className="transition-colors text-background-800 hover:text-background-600 duration-75 align-bottom"
+              className="transition-[colors,transform] text-ui-blue-800 hover:text-ui-blue-600 hover:scale-105 duration-75 align-bottom"
             >
-              <FaWindowClose aria-hidden="true" />
+              <TbSquareX aria-hidden="true" />
             </button>
           </div>
           <div className="relative">
             <form
               onSubmit={handleSubmit}
-              className={`${state.succeeded ? 'blur-xs' : ''} p-6 flex flex-col gap-2 relative`}
+              className={`${state.succeeded ? 'blur-xs opacity-50' : ''} p-6 flex flex-col gap-2 relative`}
             >
               <label htmlFor="email" className="font-bold">
                 Your Email
@@ -124,9 +124,9 @@ export default function ContactModal() {
                 disabled={state.succeeded ? true : undefined}
               ></textarea>
 
-              <input
+              <button
                 type="submit"
-                className="px-6 py-2 border bg-background-200  text-gray-700 mt-4 cursor-pointer disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-default font-medium rounded-sm hover:bg-background-100 transition-colors self-center"
+                className="btn btn-primary font-medium rounded-sm hover:bg-background-100 transition-colors self-center"
                 disabled={
                   !state.succeeded &&
                   !state.submitting &&
@@ -136,11 +136,12 @@ export default function ContactModal() {
                     ? undefined
                     : true
                 }
-                value={state.submitting ? 'Submitting...' : 'Submit'}
-              />
+              >
+                {state.submitting ? 'Submitting...' : 'Submit'}
+              </button>
             </form>
             {state.succeeded && (
-              <div className="absolute left-0 top-0 w-full h-full z-10 blur-0 grid place-items-center text-xl font-bold p-16 text-center">
+              <div className="absolute left-0 top-0 w-full h-full z-10 blur-none grid place-items-center text-xl font-bold p-16 text-center">
                 Your message has been received. Thanks for reaching out!
               </div>
             )}

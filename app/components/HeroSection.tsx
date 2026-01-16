@@ -48,8 +48,12 @@ export default function HeroSection() {
             break when no one’s paying attention.
           </p>
           <div className="flex gap-4">
-            <button className="btn btn-primary">Get in Touch</button>
-            <button className="btn btn-secondary">Learn More</button>
+            <a href="#contact" className="btn btn-primary">
+              Get in Touch
+            </a>
+            <a href="#skills" className="btn btn-secondary">
+              Learn More
+            </a>
           </div>
         </div>
       </div>

@@ -211,7 +211,7 @@ export default function SkillsSection() {
   };
 
   return (
-    <section className="bg-ui-blue-200" id="skills-section">
+    <section className="bg-ui-blue-200" id="skills">
       <div className="container sideline px-4">
         <h2 className="Text text-ui-blue-800 font-black pt-12 pb-4">
           Platforms &amp; Tools
