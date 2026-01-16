@@ -217,7 +217,23 @@ export default function SkillsSection() {
           Skills & Technologies
         </h2>
 
-        <div className="grid grid-cols-2 gap-8 cursor-crosshair pb-8">
+        <div className="sr-only">
+          {Object.keys(simpleSkills).map((category) => (
+            <div key={category}>
+              <h3>{category}</h3>
+              <ul>
+                {simpleSkills[category].map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="grid grid-cols-2 gap-8 cursor-crosshair pb-8"
+          aria-hidden="true"
+        >
           <div onMouseLeave={clearHover}>
             {Object.keys(skills).map((category) => (
               <motion.div

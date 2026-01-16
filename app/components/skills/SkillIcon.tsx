@@ -39,7 +39,6 @@ export default function SkillIcon({
         <div className="w-full aspect-square relative">
           {/* The colored SVG */}
           <svg
-            role="img"
             viewBox={icon.viewBox ?? '0 0 24 24'}
             className="svg-active"
             xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +62,6 @@ export default function SkillIcon({
 
           {/* The desaturated SVG */}
           <svg
-            role="img"
             viewBox={icon.viewBox ?? '0 0 24 24'}
             className="svg-inactive"
             xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +74,6 @@ export default function SkillIcon({
           </svg>
         </div>
       </span>
-      {/* <span className="block pl-2 pr-3">{name}</span> */}
     </li>
   );
 }

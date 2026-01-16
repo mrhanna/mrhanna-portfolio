@@ -8,7 +8,7 @@
 }
 
 @theme inline {
-  --sideline-color: var(--color-ui-blue-200);
+  --sideline-color: var(--color-ui-blue-100);
 
   --color-*: initial;
 
