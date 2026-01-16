@@ -128,23 +128,35 @@ export default function SkillsSection() {
       setFocusStatus({ type: '', skill: '', category: '' });
       return;
     } else if (identifier.type === 'label') {
-      if (focusStatus.category === identifier.category) {
-        setFocusStatus({
-          type: 'icon',
-          skill: identifier.skill,
-          category: identifier.category,
-        });
-        return;
-      } else {
-        setFocusStatus({
-          type: 'card',
-          skill: '',
-          category: identifier.category,
-        });
-        return;
-      }
+      // if (focusStatus.category === identifier.category) {
+      setFocusStatus(identifier);
+      return;
+      // } else {
+      //   setFocusStatus({
+      //     type: 'card',
+      //     skill: '',
+      //     category: identifier.category,
+      //   });
+      //   return;
+      // }
     }
     setFocusStatus(identifier);
+  };
+
+  const handleLabelMouseLeave = (
+    e: React.MouseEvent<HTMLElement>,
+    category: string,
+  ) => {
+    const related = e.relatedTarget as Node | null;
+    const cardEl = (e.currentTarget as HTMLElement).closest('.skill-card');
+
+    if (related && cardEl && cardEl.contains(related)) {
+      // pointer moved somewhere else inside the same card -> fallback to card hover
+      setHoverStatus({ type: 'card', skill: '', category });
+    } else {
+      // pointer left the card entirely -> clear hover
+      setHoverStatus({ type: '', skill: '', category: '' });
+    }
   };
 
   return (
@@ -179,6 +191,7 @@ export default function SkillsSection() {
                           skill: skill.name,
                         })
                       }
+                      onMouseLeave={(e) => handleLabelMouseLeave(e, category)}
                       onClick={(e: React.MouseEvent) => {
                         e.stopPropagation();
                         handleClick({

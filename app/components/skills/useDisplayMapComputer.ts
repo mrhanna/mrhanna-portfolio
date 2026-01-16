@@ -41,26 +41,37 @@ export function useDisplayMapComputer(skills: Record<string, string[]>) {
       });
     };
 
-    // HOVER
-    if (hover.type === 'icon') {
-      displayMap.icons[hover.skill] = 3;
+    if (focus.type || hover.type) {
+      // Fade everything
       setAllCards(1);
+      setAllIcons(1);
+    }
+
+    // HOVER
+
+    if (hover.type === 'card') {
+      displayMap.cards[hover.category] = focus.type ? 2 : 3;
+      setIconsOfCategory(hover.category, 3);
+    }
+
+    //
+    else if (hover.type === 'icon') {
+      displayMap.icons[hover.skill] = 3;
+      displayMap.cards[hover.category] = 3;
+      displayMap.labels[hover.skill] = 3;
+    }
+
+    //
+    else if (hover.type === 'label') {
+      setIconsOfCategory(hover.category, 3);
+      // displayMap.icons[hover.skill] = 3;
       displayMap.cards[hover.category] = focus.type ? 2 : 3;
       displayMap.labels[hover.skill] = 3;
     }
 
     //
-    else if (hover.type === 'card' || (hover.type === 'label' && !focus.type)) {
-      setAllCards(1);
-      displayMap.cards[hover.category] = focus.type ? 2 : 3;
+    //FOCUS
 
-      setAllIcons(1);
-      setIconsOfCategory(hover.category, focus.type ? 2 : 3);
-    }
-
-    //
-
-    // FOCUS
     if (focus.type === 'icon') {
       displayMap.icons[focus.skill] = 4;
       displayMap.cards[focus.category] = 4;
@@ -68,12 +79,18 @@ export function useDisplayMapComputer(skills: Record<string, string[]>) {
     }
 
     //
-    else if (focus.type === 'card') {
-      if (!hover.type) {
-        setAllCards(1);
-        setAllIcons(1);
+    else if (focus.type === 'label') {
+      setIconsOfCategory(focus.category, 2);
+      if (hover.type === 'icon' && hover.category === focus.category) {
+        displayMap.icons[hover.skill] = 3;
       }
+      displayMap.icons[focus.skill] = 4;
+      displayMap.cards[focus.category] = 4;
+      displayMap.labels[focus.skill] = 4;
+    }
 
+    //
+    else if (focus.type === 'card') {
       displayMap.cards[focus.category] = 4;
       setIconsOfCategory(focus.category, 3);
     }
