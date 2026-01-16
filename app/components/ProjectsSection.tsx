@@ -69,19 +69,20 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section className="py-12 sm:py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
+    <section className="bg-ui-blue-100">
+      <div className="px-4 container sideline py-8 lg:pb-16">
+        <h2 className="Text text-ui-blue-800 font-black pt-12 py-4">
           Featured Projects
         </h2>
+
         <ul className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 items-start">
           {projects.map((project) => (
             <li
               key={project.name}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow col-span-2 sm:last:odd:col-start-2"
+              className="bg-ui-blue-50 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow col-span-2 sm:last:odd:col-start-2"
             >
               <article>
-                <div className="aspect-video bg-gray-100 relative p-4 text-right">
+                <div className="aspect-video bg-ui-blue-800 relative p-4 text-right">
                   {project.imageURL && (
                     <Image
                       src={project.imageURL}
@@ -93,11 +94,11 @@ export default function ProjectsSection() {
                   {project.status && <StatusBadge status={project.status} />}
                 </div>
                 <div className="p-4 sm:p-6">
-                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
+                  <h3 className="text-base sm:text-lg font-semibold text-ui-blue-950 mb-2">
                     {project.name}
                   </h3>
                   <p className="sr-only">Status: {project.status}</p>
-                  <p className="text-sm sm:text-base text-gray-600 mb-4">
+                  <p className="text-sm sm:text-base text-ui-blue-900 mb-4">
                     {project.description}
                   </p>
                   {project.stack && (
@@ -117,7 +118,7 @@ export default function ProjectsSection() {
                         target={
                           isRelativeURL(project.projectURL) ? '_self' : '_blank'
                         }
-                        className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
+                        className="text-ui-blue-700 hover:text-ui-blue-800 font-medium text-sm sm:text-base"
                       >
                         View Project{' '}
                         <span className="sr-only">{project.name}</span>
@@ -130,7 +131,7 @@ export default function ProjectsSection() {
                         target={
                           isRelativeURL(project.demoURL) ? '_self' : '_blank'
                         }
-                        className="text-blue-600 hover:text-blue-800 font-medium text-sm sm:text-base"
+                        className="text-ui-blue-700 hover:text-ui-blue-800 font-medium text-sm sm:text-base"
                       >
                         Live Demo{' '}
                         <span className="sr-only">of {project.name}</span>

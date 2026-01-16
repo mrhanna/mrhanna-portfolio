@@ -51,12 +51,12 @@ function BadgeView({
         className="flex items-center px-1"
         style={{
           backgroundColor: color,
-          color: 'white',
+          color: 'var(--color-ui-blue-50)',
         }}
       >
         <Icon aria-hidden="true" className="block" />
       </span>
-      <span className="block pl-2 pr-3">{label}</span>
+      <span className="block pl-2 pr-3 text-ui-blue-950">{label}</span>
     </li>
   );
 }
