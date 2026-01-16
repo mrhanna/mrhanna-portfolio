@@ -28,6 +28,7 @@ import {
   ActivityIdentifier,
   useDisplayMapComputer,
 } from './skills/useDisplayMapComputer';
+import { motion } from 'framer-motion';
 
 const skills: Record<string, Skill[]> = {
   'Core Web': [
@@ -219,50 +220,61 @@ export default function SkillsSection() {
         <div className="grid grid-cols-2 gap-8 cursor-crosshair pb-8">
           <div onMouseLeave={clearHover}>
             {Object.keys(skills).map((category) => (
-              <div
-                className={`skill-card scroll-m-8 level-${displayMap.cards[category] ?? 2}`}
-                onMouseEnter={() =>
-                  handleMouseEnter({ type: 'card', category, skill: '' })
-                }
-                onClick={() =>
-                  handleClick({ type: 'card', category, skill: '' })
-                }
-                id={toId(`skill-card-${category}`)}
+              <motion.div
                 key={category}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ amount: 0.5, once: true }}
+                transition={{ duration: 0.3 }}
               >
-                <h3 className="my-2 text-xl font-black">{category}</h3>
-                <ul>
-                  {skills[category].map((skill) => (
-                    <li
-                      className={`skill-label level-${displayMap.labels[skill.name] ?? 2}`}
-                      onMouseEnter={() =>
-                        handleMouseEnter({
-                          type: 'label',
-                          category,
-                          skill: skill.name,
-                        })
-                      }
-                      onMouseLeave={(e) => handleLabelMouseLeave(e, category)}
-                      onClick={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        handleClick({
-                          type: 'label',
-                          category,
-                          skill: skill.name,
-                        });
-                      }}
-                      key={skill.name}
-                    >
-                      {skill.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div
+                  className={`skill-card scroll-m-8 level-${displayMap.cards[category] ?? 2}`}
+                  onMouseEnter={() =>
+                    handleMouseEnter({ type: 'card', category, skill: '' })
+                  }
+                  onClick={() =>
+                    handleClick({ type: 'card', category, skill: '' })
+                  }
+                  id={toId(`skill-card-${category}`)}
+                >
+                  <h3 className="my-2 text-xl font-black">{category}</h3>
+                  <ul>
+                    {skills[category].map((skill) => (
+                      <li
+                        className={`skill-label level-${displayMap.labels[skill.name] ?? 2}`}
+                        onMouseEnter={() =>
+                          handleMouseEnter({
+                            type: 'label',
+                            category,
+                            skill: skill.name,
+                          })
+                        }
+                        onMouseLeave={(e) => handleLabelMouseLeave(e, category)}
+                        onClick={(e: React.MouseEvent) => {
+                          e.stopPropagation();
+                          handleClick({
+                            type: 'label',
+                            category,
+                            skill: skill.name,
+                          });
+                        }}
+                        key={skill.name}
+                      >
+                        {skill.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
             ))}
           </div>
 
           <div className="relative cursor-crosshair mb-4">
-            <ul
+            <motion.ul
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ amount: 0.5 }}
+              transition={{ duration: 0.3 }}
               className="list-style-none grid grid-cols-6 gap-2 sticky"
               style={{
                 top: 'calc(50% - var(--container-max) / 6)',
@@ -288,7 +300,7 @@ export default function SkillsSection() {
                     />
                   );
                 })}
-            </ul>
+            </motion.ul>
           </div>
         </div>
       </div>
