@@ -22,7 +22,7 @@ import {
   siGimp,
   siInkscape,
 } from 'simple-icons';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { a } from 'framer-motion/client';
 import {
   ActivityIdentifier,
@@ -92,6 +92,10 @@ Object.keys(skills).forEach((category) => {
   });
 });
 
+function toId(str: string) {
+  return str.replaceAll(' ', '-').toLowerCase();
+}
+
 export default function SkillsSection() {
   const [focusStatus, setFocusStatus] = useState<ActivityIdentifier>({
     type: '',
@@ -105,6 +109,47 @@ export default function SkillsSection() {
     category: '',
   });
 
+  useEffect(() => {
+    if (focusStatus.category) {
+      document
+        .getElementById(toId(`skill-card-${focusStatus.category}`))
+        ?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+    }
+  }, [focusStatus.category]);
+
+  useEffect(() => {
+    const onPointer = (e: MouseEvent | TouchEvent) => {
+      if (
+        e.target &&
+        e.target instanceof HTMLElement &&
+        !e.target.closest('.skill-card, .skill-icon')
+      ) {
+        setFocusStatus({ type: '', skill: '', category: '' });
+        setHoverStatus({ type: '', skill: '', category: '' });
+      }
+    };
+
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setFocusStatus({ type: '', skill: '', category: '' });
+        setHoverStatus({ type: '', skill: '', category: '' });
+      }
+    };
+
+    document.addEventListener('click', onPointer);
+    document.addEventListener('touchstart', onPointer);
+    document.addEventListener('keydown', onEscape);
+
+    return () => {
+      document.removeEventListener('click', onPointer);
+      document.removeEventListener('touchstart', onPointer);
+      document.removeEventListener('keydown', onEscape);
+    };
+  }, []);
+
   const computeDisplayMap = useDisplayMapComputer(simpleSkills);
 
   const displayMap = useMemo(
@@ -116,7 +161,7 @@ export default function SkillsSection() {
     setHoverStatus(identifier);
   };
 
-  const handleMouseLeave = () => {
+  const clearHover = () => {
     setHoverStatus({ type: '', skill: '', category: '' });
   };
 
@@ -172,16 +217,17 @@ export default function SkillsSection() {
         </h2>
 
         <div className="grid grid-cols-2 gap-8 cursor-crosshair pb-8">
-          <div onMouseLeave={handleMouseLeave}>
+          <div onMouseLeave={clearHover}>
             {Object.keys(skills).map((category) => (
               <div
-                className={`skill-card level-${displayMap.cards[category] ?? 2}`}
+                className={`skill-card scroll-m-8 level-${displayMap.cards[category] ?? 2}`}
                 onMouseEnter={() =>
                   handleMouseEnter({ type: 'card', category, skill: '' })
                 }
                 onClick={() =>
                   handleClick({ type: 'card', category, skill: '' })
                 }
+                id={toId(`skill-card-${category}`)}
                 key={category}
               >
                 <h3 className="my-2 text-xl font-black">{category}</h3>
@@ -221,7 +267,7 @@ export default function SkillsSection() {
               style={{
                 top: 'calc(50% - var(--container-max) / 6)',
               }}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={clearHover}
             >
               {Object.values(skills)
                 .flat()
