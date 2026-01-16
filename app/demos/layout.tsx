@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { FaChevronLeft } from 'react-icons/fa';
+
+import { TbChevronLeft } from 'react-icons/tb';
 
 export default function DemoLayout({
   children,
@@ -8,12 +9,12 @@ export default function DemoLayout({
 }>) {
   return (
     <>
-      <nav className="px-4 bg-background-100 sticky top-0 shadow-xs">
+      <nav className="px-4 bg-ui-blue-200 sticky top-0 shadow-xs">
         <Link
           href="/"
-          className="inline-flex p-2 pr-4 items-center gap-4 hover:bg-background-200"
+          className="inline-flex p-2 pr-4 items-center gap-4 hover:bg-ui-blue-100"
         >
-          <FaChevronLeft size={24} className="inline-block" />
+          <TbChevronLeft size={24} className="inline-block" />
           back to portfolio
         </Link>
       </nav>
