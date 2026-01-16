@@ -6,6 +6,7 @@ import ProjectsSection from './components/ProjectsSection';
 import ContactSection from './components/ContactSection';
 import ContactModal from './components/ContactModal';
 import { Suspense } from 'react';
+import ApproachSection from './components/ApproachSection';
 
 export default function SimplePortfolio() {
   return (
@@ -16,6 +17,7 @@ export default function SimplePortfolio() {
       <main className="min-h-screen">
         <HeroSection />
         <SkillsSection />
+        <ApproachSection />
         <ProjectsSection />
         <ContactSection />
       </main>
