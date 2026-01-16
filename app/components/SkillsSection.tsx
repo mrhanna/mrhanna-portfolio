@@ -123,24 +123,24 @@ export default function SkillsSection() {
   const handleClick = (identifier: ActivityIdentifier) => {
     if (
       focusStatus.category === identifier.category &&
-      focusStatus.skill === identifier.skill
+      hoverStatus.category === identifier.category &&
+      hoverStatus.skill === identifier.skill
     ) {
+      // clicked the focused item -> unfocus
       setFocusStatus({ type: '', skill: '', category: '' });
+      setHoverStatus({ type: '', skill: '', category: '' });
       return;
-    } else if (identifier.type === 'label') {
-      // if (focusStatus.category === identifier.category) {
-      setFocusStatus(identifier);
-      return;
-      // } else {
-      //   setFocusStatus({
-      //     type: 'card',
-      //     skill: '',
-      //     category: identifier.category,
-      //   });
-      //   return;
-      // }
     }
-    setFocusStatus(identifier);
+
+    // new idea: only cards receive "focus"
+    setFocusStatus({
+      skill: '',
+      category: identifier.category,
+      type: 'card',
+    });
+
+    // for mobile: do hovers with click too
+    setHoverStatus(identifier);
   };
 
   const handleLabelMouseLeave = (
@@ -150,7 +150,12 @@ export default function SkillsSection() {
     const related = e.relatedTarget as Node | null;
     const cardEl = (e.currentTarget as HTMLElement).closest('.skill-card');
 
-    if (related && cardEl && cardEl.contains(related)) {
+    if (
+      related &&
+      cardEl &&
+      related instanceof Node &&
+      cardEl.contains(related)
+    ) {
       // pointer moved somewhere else inside the same card -> fallback to card hover
       setHoverStatus({ type: 'card', skill: '', category });
     } else {
@@ -234,7 +239,6 @@ export default function SkillsSection() {
                       displayLevel={displayMap.icons[skill.name] ?? 2}
                       onClick={() => handleClick(identifier)}
                       onMouseEnter={() => handleMouseEnter(identifier)}
-                      onMouseLeave={handleMouseLeave}
                     />
                   );
                 })}

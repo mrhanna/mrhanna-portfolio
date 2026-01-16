@@ -55,45 +55,83 @@ export function useDisplayMapComputer(skills: Record<string, string[]>) {
     }
 
     //
-    else if (hover.type === 'icon') {
-      displayMap.icons[hover.skill] = 3;
-      displayMap.cards[hover.category] = 3;
-      displayMap.labels[hover.skill] = 3;
-    }
-
-    //
     else if (hover.type === 'label') {
-      setIconsOfCategory(hover.category, 3);
-      // displayMap.icons[hover.skill] = 3;
       displayMap.cards[hover.category] = focus.type ? 2 : 3;
+      setIconsOfCategory(hover.category, 3);
       displayMap.labels[hover.skill] = 3;
     }
 
     //
-    //FOCUS
-
-    if (focus.type === 'icon') {
-      displayMap.icons[focus.skill] = 4;
-      displayMap.cards[focus.category] = 4;
-      displayMap.labels[focus.skill] = 4;
+    else if (hover.type === 'icon') {
+      displayMap.cards[hover.category] = focus.type ? 2 : 3;
+      setIconsOfCategory(hover.category, 2);
+      displayMap.icons[hover.skill] = 3;
+      displayMap.labels[hover.skill] = 3;
     }
 
-    //
-    else if (focus.type === 'label') {
-      setIconsOfCategory(focus.category, 2);
-      if (hover.type === 'icon' && hover.category === focus.category) {
-        displayMap.icons[hover.skill] = 3;
-      }
-      displayMap.icons[focus.skill] = 4;
-      displayMap.cards[focus.category] = 4;
-      displayMap.labels[focus.skill] = 4;
-    }
+    // FOCUS
 
-    //
-    else if (focus.type === 'card') {
+    if (focus.type === 'card') {
       displayMap.cards[focus.category] = 4;
       setIconsOfCategory(focus.category, 3);
+
+      if (hover.category === focus.category) {
+        displayMap.icons[hover.skill] = 4;
+        displayMap.labels[hover.skill] = 4;
+      }
     }
+
+    // if (hover.type === 'card') {
+    //   displayMap.cards[hover.category] = focus.type ? 2 : 3;
+    //   setIconsOfCategory(hover.category, 3);
+    // }
+
+    // //
+    // else if (hover.type === 'icon') {
+    //   displayMap.icons[hover.skill] = 3;
+    //   displayMap.cards[hover.category] = 3;
+    //   displayMap.labels[hover.skill] = 3;
+    // }
+
+    // //
+    // else if (hover.type === 'label') {
+    //   setIconsOfCategory(hover.category, 3);
+    //   // displayMap.icons[hover.skill] = 3;
+    //   displayMap.cards[hover.category] = focus.type ? 2 : 3;
+    //   displayMap.labels[hover.skill] = 3;
+    // }
+
+    // //
+    // //FOCUS
+
+    // // if (focus.type === 'icon') {
+    // //   displayMap.icons[focus.skill] = 4;
+    // //   displayMap.cards[focus.category] = 4;
+    // //   displayMap.labels[focus.skill] = 4;
+    // // }
+
+    // //
+    // else if (focus.type === 'label' || focus.type === 'icon') {
+    //   setIconsOfCategory(
+    //     focus.category,
+    //     hover.category &&
+    //       (hover.category !== focus.category || hover.category === 'icon')
+    //       ? 2
+    //       : 3,
+    //   );
+    //   if (hover.type === 'icon' && hover.category === focus.category) {
+    //     displayMap.icons[hover.skill] = 3;
+    //   }
+    //   displayMap.icons[focus.skill] = 4;
+    //   displayMap.cards[focus.category] = 4;
+    //   displayMap.labels[focus.skill] = 4;
+    // }
+
+    // //
+    // else if (focus.type === 'card') {
+    //   displayMap.cards[focus.category] = 4;
+    //   setIconsOfCategory(focus.category, 3);
+    // }
 
     return displayMap;
   }, []);

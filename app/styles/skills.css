@@ -76,8 +76,7 @@
 
     transition: border-left-color 0.3s;
 
-    &.level-3,
-    &:hover:not(.level-4) {
+    &.level-3 {
       border-left-color: var(--color-accent-blue-300);
     }
 
