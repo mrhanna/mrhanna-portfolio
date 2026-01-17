@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 export default function HeroSection() {
   return (
     <section className="overflow-x-clip">
@@ -32,7 +30,7 @@ export default function HeroSection() {
         </div>
         <div className="md:order-1 text-left prose max-w-90 grow">
           <h1>
-            Hi, I'm Michael Hanna.{' '}
+            Hi, I&apos;m Michael Hanna.{' '}
             <span role="img" aria-label="waving hand">
               👋
             </span>
@@ -45,7 +43,7 @@ export default function HeroSection() {
           <p className="max-w-80">
             I help teams ship reliable websites by handling the parts that need
             careful thinking: structure, implementation, and the details that
-            break when no one’s paying attention.
+            break when no one&apos;s paying attention.
           </p>
           <div className="flex gap-4">
             <a href="#contact" className="btn btn-primary">

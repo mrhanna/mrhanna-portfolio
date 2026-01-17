@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import SkillIcon, { Skill } from './skills/SkillIcon';
 import {
   siHtml5,
@@ -23,7 +22,6 @@ import {
   siInkscape,
 } from 'simple-icons';
 import { useEffect, useMemo, useState } from 'react';
-import { a } from 'framer-motion/client';
 import {
   ActivityIdentifier,
   useDisplayMapComputer,
@@ -155,7 +153,7 @@ export default function SkillsSection() {
 
   const displayMap = useMemo(
     () => computeDisplayMap(hoverStatus, focusStatus),
-    [hoverStatus, focusStatus],
+    [hoverStatus, focusStatus, computeDisplayMap],
   );
 
   const handleMouseEnter = (identifier: ActivityIdentifier) => {

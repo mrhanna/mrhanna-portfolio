@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { useCallback, useRef } from 'react';
 
 export interface ActivityIdentifier {
   type: 'icon' | 'card' | 'label' | '';

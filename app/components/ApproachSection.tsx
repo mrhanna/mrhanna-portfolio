@@ -1,16 +1,10 @@
-import Image from 'next/image';
-import Badge, { BadgeSlug } from './Badge';
-import StatusBadge, { Status } from './StatusBadge';
-import Link from 'next/link';
 import { IconType } from 'react-icons';
-import { PiDevices, PiPuzzlePiece } from 'react-icons/pi';
 import {
   TbBlocks,
   TbBriefcase,
   TbDeviceDesktopCheck,
   TbDevices,
   TbFileStack,
-  TbServerCog,
 } from 'react-icons/tb';
 
 interface ApproachPoint {

@@ -1,6 +1,3 @@
-import { useCallback } from 'react';
-import type { SimpleIcon } from 'simple-icons';
-
 export type Skill = {
   name: string;
   icon: { hex: string | string[]; path: string | string[]; viewBox?: string };
@@ -14,7 +11,6 @@ export default function SkillIcon({
   displayLevel = 2,
   onClick,
   onMouseEnter,
-  onMouseLeave,
 }: {
   skill: Skill;
   displayLevel?: 1 | 2 | 3 | 4;
@@ -22,7 +18,7 @@ export default function SkillIcon({
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 }) {
-  const { name, icon, weight = 1, cloudOrder = 0 } = skill;
+  const { icon, weight = 1, cloudOrder = 0 } = skill;
 
   return (
     <li
