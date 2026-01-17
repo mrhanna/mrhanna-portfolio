@@ -13,7 +13,7 @@ import {
 export default function ContactSection() {
   return (
     <section className="py-16 bg-ui-blue-900 text-ui-blue-100" id="contact">
-      <div className="max-w-2xl mx-auto">
+      <div className="container px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 my-8">
+          <div className="flex flex-col sm:flex-row  justify-center items-center gap-4 my-8">
             <Link
               scroll={false}
               href="/?contact"

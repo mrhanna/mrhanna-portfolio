@@ -70,7 +70,7 @@ export default function ProjectsSection() {
 
   return (
     <section className="bg-ui-blue-100">
-      <div className="px-4 container sideline py-8 lg:pb-16">
+      <div className="px-4 container sideline pb-16">
         <h2 className="Text text-ui-blue-800 font-black pt-12 py-4">
           Featured Projects
         </h2>

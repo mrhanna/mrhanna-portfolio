@@ -8,11 +8,11 @@
   }
 
   .svg-active {
-    @apply w-full h-full transition-opacity opacity-0 relative z-1;
+    @apply w-full h-full transition-opacity opacity-0 relative z-2;
   }
 
   .svg-inactive {
-    @apply w-full h-full transition-opacity absolute top-0 left-0 -z-1 opacity-30;
+    @apply w-full h-full transition-opacity absolute top-0 left-0 z-1 opacity-30;
 
     fill: var(--color-ui-blue-950);
   }

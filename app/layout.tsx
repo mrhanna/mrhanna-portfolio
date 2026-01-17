@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Source_Sans_3 } from 'next/font/google';
 import './styles/globals.css';
 
@@ -7,6 +7,12 @@ const inter = Source_Sans_3({
   subsets: ['latin'],
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mrhanna.dev'),

@@ -231,16 +231,16 @@ export default function SkillsSection() {
         </div>
 
         <div
-          className="grid grid-cols-2 gap-8 cursor-crosshair pb-8"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 cursor-crosshair pb-8 order-2 sm:order-1"
           aria-hidden="true"
         >
-          <div onMouseLeave={clearHover}>
+          <div onMouseLeave={clearHover} className="order-2 sm:order-1">
             {Object.keys(skills).map((category) => (
               <motion.div
                 key={category}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ amount: 0.5, once: true }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.3 }}
               >
                 <div
@@ -285,11 +285,10 @@ export default function SkillsSection() {
             ))}
           </div>
 
-          <div className="relative cursor-crosshair mb-4">
+          <div className="relative cursor-crosshair order-1 sm:order-2">
             <motion.ul
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ amount: 0.5 }}
               transition={{ duration: 0.3 }}
               className="list-style-none grid grid-cols-6 gap-2 sticky"
               style={{

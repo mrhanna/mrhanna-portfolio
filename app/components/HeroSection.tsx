@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <section className="overflow-x-clip">
       <div className="container mx-auto flex flex-col gap-8 md:flex-row justify-between mt-30 pb-30 sideline items-center px-4">
-        <div className="md:order-2 w-24 aspect-square md:w-76 relative bg-accent-blue-300 rounded-full">
+        <div className="md:order-2 w-36 aspect-square md:w-76 relative bg-accent-blue-300 rounded-full">
           <svg width="0" height="0" aria-hidden="true">
             <defs>
               <clipPath id="portrait-cut" clipPathUnits="objectBoundingBox">
