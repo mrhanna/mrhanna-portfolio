@@ -21,12 +21,13 @@ import {
   siGimp,
   siInkscape,
 } from 'simple-icons';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   ActivityIdentifier,
   useDisplayMapComputer,
 } from './skills/useDisplayMapComputer';
 import { motion } from 'framer-motion';
+import { useSkillsState } from './skills/useSkillsState';
 
 const skills: Record<string, Skill[]> = {
   'Core Web': [
@@ -96,18 +97,10 @@ function toId(str: string) {
 }
 
 export default function SkillsSection() {
-  const [focusStatus, setFocusStatus] = useState<ActivityIdentifier>({
-    type: '',
-    skill: '',
-    category: '',
-  });
+  const [focusStatus, hoverStatus, setFocus, setHover, clearHover] =
+    useSkillsState();
 
-  const [hoverStatus, setHoverStatus] = useState<ActivityIdentifier>({
-    type: '',
-    skill: '',
-    category: '',
-  });
-
+  // smooth scroll on icon click
   useEffect(() => {
     if (focusStatus.category) {
       document
@@ -119,6 +112,7 @@ export default function SkillsSection() {
     }
   }, [focusStatus.category]);
 
+  // handle clicks outside and escape key to clear focus/hover
   useEffect(() => {
     const onPointer = (e: MouseEvent | TouchEvent) => {
       if (
@@ -126,15 +120,15 @@ export default function SkillsSection() {
         e.target instanceof HTMLElement &&
         !e.target.closest('.skill-card, .skill-icon')
       ) {
-        setFocusStatus({ type: '', skill: '', category: '' });
-        setHoverStatus({ type: '', skill: '', category: '' });
+        setFocus({ type: '', skill: '', category: '' });
+        setHover({ type: '', skill: '', category: '' });
       }
     };
 
     const onEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setFocusStatus({ type: '', skill: '', category: '' });
-        setHoverStatus({ type: '', skill: '', category: '' });
+        setFocus({ type: '', skill: '', category: '' });
+        setHover({ type: '', skill: '', category: '' });
       }
     };
 
@@ -149,43 +143,12 @@ export default function SkillsSection() {
     };
   }, []);
 
+  // compute display map based on hover and focus status
   const computeDisplayMap = useDisplayMapComputer(simpleSkills);
-
   const displayMap = useMemo(
     () => computeDisplayMap(hoverStatus, focusStatus),
     [hoverStatus, focusStatus, computeDisplayMap],
   );
-
-  const handleMouseEnter = (identifier: ActivityIdentifier) => {
-    setHoverStatus(identifier);
-  };
-
-  const clearHover = () => {
-    setHoverStatus({ type: '', skill: '', category: '' });
-  };
-
-  const handleClick = (identifier: ActivityIdentifier) => {
-    if (
-      focusStatus.category === identifier.category &&
-      hoverStatus.category === identifier.category &&
-      hoverStatus.skill === identifier.skill
-    ) {
-      // clicked the focused item -> unfocus
-      setFocusStatus({ type: '', skill: '', category: '' });
-      setHoverStatus({ type: '', skill: '', category: '' });
-      return;
-    }
-
-    // new idea: only cards receive "focus"
-    setFocusStatus({
-      skill: '',
-      category: identifier.category,
-      type: 'card',
-    });
-
-    // for mobile: do hovers with click too
-    setHoverStatus(identifier);
-  };
 
   const handleLabelMouseLeave = (
     e: React.MouseEvent<HTMLElement>,
@@ -201,10 +164,10 @@ export default function SkillsSection() {
       cardEl.contains(related)
     ) {
       // pointer moved somewhere else inside the same card -> fallback to card hover
-      setHoverStatus({ type: 'card', skill: '', category });
+      setHover({ type: 'card', skill: '', category });
     } else {
       // pointer left the card entirely -> clear hover
-      setHoverStatus({ type: '', skill: '', category: '' });
+      setHover({ type: '', skill: '', category: '' });
     }
   };
 
@@ -244,10 +207,10 @@ export default function SkillsSection() {
                 <div
                   className={`skill-card scroll-m-8 level-${displayMap.cards[category] ?? 2}`}
                   onMouseEnter={() =>
-                    handleMouseEnter({ type: 'card', category, skill: '' })
+                    setHover({ type: 'card', category, skill: '' })
                   }
                   onClick={() =>
-                    handleClick({ type: 'card', category, skill: '' })
+                    setFocus({ type: 'card', category, skill: '' })
                   }
                   id={toId(`skill-card-${category}`)}
                 >
@@ -257,7 +220,7 @@ export default function SkillsSection() {
                       <li
                         className={`skill-label level-${displayMap.labels[skill.name] ?? 2}`}
                         onMouseEnter={() =>
-                          handleMouseEnter({
+                          setHover({
                             type: 'label',
                             category,
                             skill: skill.name,
@@ -266,7 +229,7 @@ export default function SkillsSection() {
                         onMouseLeave={(e) => handleLabelMouseLeave(e, category)}
                         onClick={(e: React.MouseEvent) => {
                           e.stopPropagation();
-                          handleClick({
+                          setFocus({
                             type: 'label',
                             category,
                             skill: skill.name,
@@ -308,8 +271,8 @@ export default function SkillsSection() {
                       key={skill.name}
                       skill={skill}
                       displayLevel={displayMap.icons[skill.name] ?? 2}
-                      onClick={() => handleClick(identifier)}
-                      onMouseEnter={() => handleMouseEnter(identifier)}
+                      onClick={() => setFocus(identifier)}
+                      onMouseEnter={() => setHover(identifier)}
                     />
                   );
                 })}
