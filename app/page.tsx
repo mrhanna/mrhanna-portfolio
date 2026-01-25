@@ -1,12 +1,12 @@
 'use client';
 
-import HeroSection from './components/HeroSection';
-import SkillsSection from './components/SkillsSection';
-import ProjectsSection from './components/ProjectsSection';
-import ContactSection from './components/ContactSection';
+import HeroSection from './components/sections/HeroSection';
+import SkillsSection from './components/sections/SkillsSection';
+import ProjectsSection from './components/sections/ProjectsSection';
+import ContactSection from './components/sections/ContactSection';
 import ContactModal from './components/ContactModal';
 import { Suspense } from 'react';
-import ApproachSection from './components/ApproachSection';
+import ApproachSection from './components/sections/ApproachSection';
 
 export default function SimplePortfolio() {
   return (

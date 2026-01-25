@@ -1,3 +1,4 @@
+import { Feature } from 'next/dist/build/webpack/plugins/telemetry-plugin/telemetry-plugin';
 import { IconType } from 'react-icons';
 import {
   TbBlocks,
@@ -6,14 +7,9 @@ import {
   TbDevices,
   TbFileStack,
 } from 'react-icons/tb';
+import FeatureGrid, { FeatureGridItem } from '../ui/FeatureGrid';
 
-interface ApproachPoint {
-  title: string;
-  description: string;
-  icon: IconType;
-}
-
-const approachPoints: ApproachPoint[] = [
+const approachPoints: FeatureGridItem[] = [
   {
     title: 'Component-Driven Development',
     description: 'Designing interfaces as composable, testable units.',
@@ -51,20 +47,7 @@ export default function ApproachSection() {
           Principles &amp; Approach
         </h2>
 
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-          {approachPoints.map((point) => (
-            <div key={point.title} className="pr-4">
-              <point.icon
-                aria-hidden="true"
-                className="text-4xl my-4 stroke-ui-blue-400"
-              />
-              <h3 className="text-sm font-bold text-ui-blue-50 border-l-2 border-l-accent-orange-500 pl-3.5 -ml-4 mb-4">
-                {point.title}
-              </h3>
-              <p className="text-sm text-ui-blue-100">{point.description}</p>
-            </div>
-          ))}
-        </div>
+        <FeatureGrid items={approachPoints} />
       </div>
     </section>
   );
