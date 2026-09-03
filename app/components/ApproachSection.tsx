@@ -1,10 +1,13 @@
 import { IconType } from 'react-icons';
 import {
-  TbBlocks,
   TbBriefcase,
-  TbDeviceDesktopCheck,
-  TbDevices,
-  TbFileStack,
+  TbShieldCheck,
+  TbCpu,
+  TbFileCode2,
+  TbNetwork,
+  TbSearch,
+  TbUserCheck,
+  TbMessage2Code,
 } from 'react-icons/tb';
 
 interface ApproachPoint {
@@ -15,31 +18,39 @@ interface ApproachPoint {
 
 const approachPoints: ApproachPoint[] = [
   {
-    title: 'Component-Driven Development',
-    description: 'Designing interfaces as composable, testable units.',
-    icon: TbBlocks,
-  },
-  {
-    title: 'Responsive Design',
-    description: 'Layouts that adapt intentionally, not incidentally.',
-    icon: TbDevices,
-  },
-  {
-    title: 'Accessibility-First Thinking',
-    description: 'WCAG 2.1 AA considerations built in from the start.',
-    icon: TbDeviceDesktopCheck,
-  },
-  {
-    title: 'Content-First CMS Architecture',
+    title: 'Systems-First Mindset',
     description:
-      'Modeling content so it survives redesigns and platform changes.',
-    icon: TbFileStack,
+      'Thinking about how the code, the network, and the hardware talk to each other.',
+    icon: TbNetwork,
   },
   {
-    title: 'Platform Pragmatism',
+    title: 'Reliability',
     description:
-      'Comfortable supporting existing systems when that’s the reality.',
-    icon: TbBriefcase,
+      'Writing config and software that are stable, predictable, and built to last.',
+    icon: TbShieldCheck,
+  },
+  {
+    title: 'Clear Documentation',
+    description:
+      "Writing down IP schemas and code logic so the next person doesn't have to guess.",
+    icon: TbFileCode2,
+  },
+  {
+    title: 'Methodical Troubleshooting',
+    description:
+      'Thinking through problems layer by layer instead of throwing random fixes at the wall.',
+    icon: TbSearch,
+  },
+  {
+    title: 'End-User Focus',
+    description:
+      'Remembering that systems should serve real people and prioritizing usability.',
+    icon: TbUserCheck,
+  },
+  {
+    title: 'Clear Communication',
+    description: 'Translating the tech into plain English.',
+    icon: TbMessage2Code,
   },
 ];
 

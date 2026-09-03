@@ -16,6 +16,16 @@ interface Project {
 export default function ProjectsSection() {
   const projects: Project[] = [
     {
+      name: 'SoNA Mentors Scheduler',
+      status: 'completed',
+      description:
+        'Simplifies session planning for the SoNA mentors by automating school schedule math and flagging calendar conflicts.',
+      stack: ['react', 'typescript', 'vite', 'google-apps-script'],
+      imageURL: '/images/sona-scheduler.jpg',
+      projectURL: 'https://github.com/mrhanna/sona-scheduler-google',
+      demoURL: '/demos/sona-scheduler',
+    },
+    {
       name: '2048',
       status: 'completed',
       description:
@@ -32,21 +42,6 @@ export default function ProjectsSection() {
       stack: ['expo', 'react', 'typescript'],
       imageURL: '/images/hiit-screenshot.png',
       projectURL: 'https://github.com/mrhanna/hiit-the-deck',
-    },
-    {
-      name: 'TrophyBoard',
-      status: 'in-progress',
-      description: 'A gamified student management platform.',
-      stack: [
-        'typescript',
-        'docker',
-        'express',
-        'postgres',
-        'prisma',
-        'nextjs',
-      ],
-      imageURL: '/images/trophyboard.png',
-      projectURL: 'https://github.com/mrhanna/trophyboard',
     },
     {
       name: 'Uptown Alive',

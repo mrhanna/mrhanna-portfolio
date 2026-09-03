@@ -3,6 +3,7 @@ import {
   SiDocker,
   SiExpo,
   SiExpress,
+  SiGoogle,
   SiNextdotjs,
   SiPostgresql,
   SiPrisma,
@@ -27,6 +28,7 @@ const badges = {
   redux: ['Redux', SiRedux, '#764ABC'],
   tailwindcss: ['TailwindCSS', SiTailwindcss, '#06B6D4'],
   expo: ['Expo', SiExpo, '#000020'],
+  'google-apps-script': ['Google Apps Script', SiGoogle, '#4285F4'],
 } satisfies Record<string, [string, IconType, string]>;
 
 export type BadgeSlug = keyof typeof badges;
