@@ -1,8 +1,6 @@
 import { IconType } from 'react-icons';
 import {
-  TbBriefcase,
   TbShieldCheck,
-  TbCpu,
   TbFileCode2,
   TbNetwork,
   TbSearch,

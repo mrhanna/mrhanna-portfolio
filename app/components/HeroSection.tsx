@@ -37,11 +37,11 @@ export default function HeroSection() {
           </h1>
 
           <p>
-            When I'm not playing or teaching saxophone, I'm writing code,
-            designing networks, and managing systems.
+            When I&apos;m not playing or teaching saxophone, I&apos;m writing
+            code, designing networks, and managing systems.
           </p>
           <p>
-            I enjoy getting hands-on with tech. Whether I'm working on a
+            I enjoy getting hands-on with tech. Whether I&apos;m working on a
             full-stack web app, configuring a switch, or setting up VMs in my
             homelab, I like understanding how systems work from the physical
             wire up to the UI. I&nbsp;hold CCNA and Azure Fundamentals
