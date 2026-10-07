@@ -41,7 +41,7 @@ export default function ContactSection() {
             </Link>
 
             <a
-              href="/assets/MichaelHanna_resume_8.7.25.pdf"
+              href="/assets/michael-hanna-resume-10.5.26.pdf"
               target="_blank"
               className="btn dark btn-secondary flex flex-row gap-2"
             >
