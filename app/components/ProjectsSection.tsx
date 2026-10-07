@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Badge, { BadgeSlug } from './Badge';
+import Badge from './Badge';
 import StatusBadge, { Status } from './StatusBadge';
 import Link from 'next/link';
 
