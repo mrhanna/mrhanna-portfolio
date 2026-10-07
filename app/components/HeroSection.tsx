@@ -49,9 +49,11 @@ export default function HeroSection() {
             networking and cloud foundations.
           </p>
           <p>
-            This portfolio is currently very front-end heavy. I plan to update
-            it with write-ups on network labs, homelab configs, and practical
-            guides. Feel free to explore the projects or get in touch!
+            This portfolio started out focused on web development, but I'm
+            expanding it to cover the broader range of technology I'm working
+            with: network labs, homelab projects, software, and practical
+            guides. Feel free to explore the projects, see what I'm learning, or
+            get in touch!
           </p>
           <div className="flex gap-4">
             <a href="#contact" className="btn btn-primary">

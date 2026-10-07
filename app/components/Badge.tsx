@@ -13,7 +13,12 @@ import {
   SiTailwindcss,
   SiTypescript,
   SiVite,
+  SiCisco,
+  SiLinux,
+  SiAnsible,
 } from 'react-icons/si';
+
+import clsx from 'clsx';
 
 const badges = {
   react: ['React', SiReact, '#61DAFB'],
@@ -28,19 +33,24 @@ const badges = {
   redux: ['Redux', SiRedux, '#764ABC'],
   tailwindcss: ['TailwindCSS', SiTailwindcss, '#06B6D4'],
   expo: ['Expo', SiExpo, '#000020'],
-  'google-apps-script': ['Google Apps Script', SiGoogle, '#4285F4'],
-} satisfies Record<string, [string, IconType, string]>;
+  googleAppsScript: ['Google Apps Script', SiGoogle, '#4285F4'],
+  containerlab: ['Containerlab', undefined],
+  cisco: ['Cisco', SiCisco, '#1BA0D7'],
+  linux: ['Linux', SiLinux, '#FCC624'],
+  ansible: ['Ansible', SiAnsible, '#EE0000'],
+  arista: ['Arista', undefined, '#0072C6'],
+} satisfies Record<string, [string, IconType?, string?]>;
 
 export type BadgeSlug = keyof typeof badges;
 
 function BadgeView({
   label,
   Icon,
-  color,
+  color = 'var(--color-ui-blue-900)',
 }: {
   label: string;
-  Icon: IconType;
-  color: string;
+  Icon?: IconType;
+  color?: string;
 }) {
   return (
     <li
@@ -49,22 +59,32 @@ function BadgeView({
         border: `2px solid ${color}`,
       }}
     >
+      {Icon && (
+        <span
+          className="flex items-center px-1"
+          style={{
+            backgroundColor: color,
+            color: 'var(--color-ui-blue-50)',
+          }}
+        >
+          <Icon aria-hidden="true" className="block" />
+        </span>
+      )}
       <span
-        className="flex items-center px-1"
-        style={{
-          backgroundColor: color,
-          color: 'var(--color-ui-blue-50)',
-        }}
+        className={clsx('block pr-3 text-ui-blue-950', Icon ? 'pl-2' : 'pl-3')}
       >
-        <Icon aria-hidden="true" className="block" />
+        {label}
       </span>
-      <span className="block pl-2 pr-3 text-ui-blue-950">{label}</span>
     </li>
   );
 }
 
-export default function Badge({ slug }: { slug: BadgeSlug }) {
-  const badge = badges[slug];
+export default function Badge({ slug }: { slug: string }) {
+  const badge = badges[slug as BadgeSlug] ?? [
+    slug,
+    undefined,
+    'var(--color-ui-blue-900)',
+  ];
 
   return <BadgeView label={badge[0]} Icon={badge[1]} color={badge[2]} />;
 }

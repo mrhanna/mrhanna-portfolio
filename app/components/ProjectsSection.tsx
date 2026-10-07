@@ -7,7 +7,7 @@ interface Project {
   name: string;
   status?: Status;
   description: string;
-  stack?: BadgeSlug[];
+  stack?: string[];
   imageURL?: string;
   projectURL?: string;
   demoURL?: string;
@@ -16,11 +16,20 @@ interface Project {
 export default function ProjectsSection() {
   const projects: Project[] = [
     {
+      name: 'Network Labs',
+      status: 'in-progress',
+      description:
+        'A growing collection of hands-on networking labs covering routing, switching, BGP, automation, and Linux networking.',
+      stack: ['containerlab', 'cisco', 'arista', 'linux', 'ansible'],
+      imageURL: '/images/labs.png',
+      projectURL: 'https://github.com/mrhanna/network-labs',
+    },
+    {
       name: 'SoNA Mentors Scheduler',
       status: 'completed',
       description:
         'Simplifies session planning for the SoNA mentors by automating school schedule math and flagging calendar conflicts.',
-      stack: ['react', 'typescript', 'vite', 'google-apps-script'],
+      stack: ['react', 'typescript', 'vite', 'googleAppsScript'],
       imageURL: '/images/sona-scheduler.jpg',
       projectURL: 'https://github.com/mrhanna/sona-scheduler-google',
       demoURL: '/demos/sona-scheduler',
@@ -100,7 +109,7 @@ export default function ProjectsSection() {
                     <>
                       <h4 className="sr-only">Tech Stack</h4>
                       <ul className="flex gap-2 my-4 flex-wrap">
-                        {project.stack.map((slug: BadgeSlug) => (
+                        {project.stack.map((slug: string) => (
                           <Badge key={slug} slug={slug} />
                         ))}
                       </ul>
